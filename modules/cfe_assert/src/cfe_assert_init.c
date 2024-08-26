@@ -32,6 +32,8 @@
 #include "uttest.h"
 #include "utbsp.h"
 
+int32 CFE_ES_SysLogWrite_Unsync(const char *SpecStringPtr, ...);
+
 /*
  * Allows the test reports to be redirected to another destination
  */
@@ -107,11 +109,14 @@ void CFE_Assert_CloseLogFile(void)
 int32 CFE_Assert_LibInit(CFE_ES_LibId_t LibId)
 {
     int32 OsStatus;
-
+CFE_ES_SysLogWrite_Unsync("%s: [%d]\n", __func__, __LINE__);
     memset(&CFE_Assert_Global, 0, sizeof(CFE_Assert_Global));
+CFE_ES_SysLogWrite_Unsync("%s: [%d]\n", __func__, __LINE__);
 
     UtTest_EarlyInit();
+CFE_ES_SysLogWrite_Unsync("%s: [%d]\n", __func__, __LINE__);
     UT_BSP_Setup();
+CFE_ES_SysLogWrite_Unsync("%s: [%d]\n", __func__, __LINE__);
 
     OsStatus = OS_MutSemCreate(&CFE_Assert_Global.AccessMutex, "CFE_Assert", 0);
     if (OsStatus != OS_SUCCESS)
@@ -119,6 +124,7 @@ int32 CFE_Assert_LibInit(CFE_ES_LibId_t LibId)
         CFE_ES_WriteToSysLog("%s: OS_MutSemCreate failed, rc=%ld\n", __func__, (long)OsStatus);
         return CFE_STATUS_EXTERNAL_RESOURCE_FAIL;
     }
+CFE_ES_SysLogWrite_Unsync("%s: [%d]\n", __func__, __LINE__);
 
     /*
      * Start a test case for all startup logic.
@@ -127,6 +133,7 @@ int32 CFE_Assert_LibInit(CFE_ES_LibId_t LibId)
      * will be reported as a "startup" test case.
      */
     UtAssert_BeginTest("CFE-STARTUP");
+CFE_ES_SysLogWrite_Unsync("%s: [%d]\n", __func__, __LINE__);
 
     return CFE_SUCCESS;
 }
