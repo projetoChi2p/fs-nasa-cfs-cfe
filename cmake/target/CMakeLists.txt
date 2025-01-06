@@ -257,15 +257,6 @@ if (DEFINED ${TGTNAME}_EMBED_FILELIST)
 
 endif (DEFINED ${TGTNAME}_EMBED_FILELIST)
 
-#message(FATAL_ERROR "+++ Using MISSION_CORE_INTERFACES '${MISSION_CORE_INTERFACES}'.")
-# +++ Using MISSION_CORE_INTERFACES 'core_api;core_private'.
-#message(FATAL_ERROR "+++ Using CFE_LINK_WHOLE_LIBS '${CFE_LINK_WHOLE_LIBS}'.")
-# +++ Using CFE_LINK_WHOLE_LIBS 'es;evs;fs;sb;tbl;time;osal;psp;msg;sbr;resourceid;config'.
-#message(FATAL_ERROR "+++ Using CFE_LINK_NORMAL_LIBS '${CFE_LINK_NORMAL_LIBS}'.")
-# +++ Using CFE_LINK_NORMAL_LIBS 'ci_lab;to_lab;sch_lab;cfe_assert;sample_app;sample_lib;cpu1_embed_files'
-# message(FATAL_ERROR "+++ Using OSAL_LINK_LIBS '${OSAL_LINK_LIBS}'.")
-#+++ Using OSAL_LINK_LIBS ''.
-
 target_link_libraries(core-${TGTNAME}
     ${MISSION_CORE_INTERFACES}
 

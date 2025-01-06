@@ -36,13 +36,9 @@
 */
 
 #include "cfe_es_module_all.h"
-#include "cfe_platform_cfg.h"
 
 #include <stdio.h>
 #include <string.h>
-
-#include "osapi-filesys.h"
-#define FREERTOS_FAT_SECTOR_SIZE 512
 
 static int32 CFE_ES_MainTaskSyncDelay(uint32 AppStateId, uint32 TimeOutMilliseconds);
 
@@ -164,15 +160,6 @@ void CFE_ES_Main(uint32 StartType, uint32 StartSubtype, uint32 ModeId, const cha
     ** Create and Mount the filesystems needed
     */
     CFE_ES_InitializeFileSystems(StartType);
-    
-    //TODO: propagate erros.
-    extern const unsigned char STARTUP_SCR_DATA[];
-    extern const unsigned long STARTUP_SCR_SIZE;
-    osal_id_t FileStartupScript;
-    // configASSERT( CFE_PLATFORM_ES_RAM_DISK_SECTOR_SIZE == FREERTOS_FAT_SECTOR_SIZE);
-    OsStatus = OS_OpenCreate(&FileStartupScript, CFE_PLATFORM_ES_VOLATILE_STARTUP_FILE, OS_FILE_FLAG_CREATE, OS_WRITE_ONLY);
-    OsStatus = OS_write(FileStartupScript, STARTUP_SCR_DATA, STARTUP_SCR_SIZE);
-    OsStatus = OS_close(FileStartupScript);
 
     /*
     ** Install exception Handlers ( Placeholder )

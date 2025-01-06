@@ -408,7 +408,7 @@ CFE_Status_t CFE_SB_UnsubscribeLocal(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeI
 **          which may include (but not limited to):
 **            - Updating sequence number
 **            - Updating timestamp
-**            - Calculating a CRC, checksum, or other message error control field
+**            - Calcualating a CRC, checksum, or other message error control field
 **
 **          Conversely, when forwarding a message that originated from
 **          an external entity (e.g. messages passing through CI or SBN), the
